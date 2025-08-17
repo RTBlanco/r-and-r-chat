@@ -1,0 +1,16 @@
+<%# app/views/chat_rooms/_new_message.html.erb %>
+
+<%= form_with(model: [@chat_room, Message.new], local: true, html: { class: "new-message-form" }) do |f| %>
+  <div class="field">
+    <%= f.text_area :content,
+                    rows: 1,
+                    placeholder: "Type a message...",
+                    autofocus: true,
+                    class: "form-control message-input",
+                    aria: { label: "Message" } %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Send", class: "btn btn-primary", data: { disable_with: "Sending..." } %>
+  </div>
+<% end %>
