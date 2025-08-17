@@ -25,16 +25,20 @@
   <body class="min-h-screen bg-white text-gray-900">
     <nav class="border-b">
       <div class="mx-auto max-w-6xl p-4 flex items-center justify-between">
-        <%= link_to Rails.application.class.module_parent_name, root_path, class: "font-semibold" %>
+        <%= link_to "R and R Chat", root_path, class: "font-semibold" %>
         <% if current_user %>
           hello <%= current_user.user_name %>
+          <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "Sign In", new_user_session_path %>
+          <%= link_to "Sign Up", new_user_registration_path %>
         <% end %>
         <div class="flex gap-3">
           <%= link_to "Home", root_path %>
           <% ChatRoom.all.each do |chat_room| %>
             <%= link_to chat_room.name, chat_room_path(chat_room)%>
           <% end %>
-          <%= link_to "Sign Out", destroy_user_session_path %>
+          
         </div>
       </div>
     </nav>
