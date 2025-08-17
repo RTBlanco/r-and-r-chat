@@ -1,6 +1,8 @@
 class ChatRoomsController < ApplicationController
   def index
     @chat_rooms = ChatRoom.all
+
+    render inertia: 'ChatRooms/ChatRooms', props: { chat_rooms: @chat_rooms }
   end
 
   def show

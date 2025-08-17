@@ -1,6 +1,7 @@
 import { createInertiaApp } from '@inertiajs/react'
 import { createElement } from 'react'
 import { createRoot } from 'react-dom/client'
+import Layout from '../pages/Layout'
 
 createInertiaApp({
   // Set default page title
@@ -26,7 +27,7 @@ createInertiaApp({
     // and use the following lines.
     // see https://inertia-rails.dev/guide/pages#default-layouts
     //
-    // page.default.layout ||= (page) => createElement(Layout, null, page)
+    page.default.layout ||= (page) => createElement(Layout, null, page)
 
     return page
   },
