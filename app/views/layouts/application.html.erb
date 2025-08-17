@@ -22,9 +22,31 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+  <body class="min-h-screen bg-white text-gray-900">
+    <nav class="border-b">
+      <div class="mx-auto max-w-6xl p-4 flex items-center justify-between">
+        <%= link_to Rails.application.class.module_parent_name, root_path, class: "font-semibold" %>
+        <% if current_user %>
+          hello <%= current_user.user_name %>
+        <% end %>
+        <div class="flex gap-3">
+          <%= link_to "Home", root_path %>
+          <% ChatRoom.all.each do |chat_room| %>
+            <%= link_to chat_room.name, chat_room_path(chat_room)%>
+          <% end %>
+          <%= link_to "Sign Out", destroy_user_session_path %>
+        </div>
+      </div>
+    </nav>
+
+    <% flash.each do |type, message| %>
+      <div class="mx-auto max-w-6xl p-4 <%= type.to_s == 'notice' ? 'bg-green-50' : 'bg-red-50' %>">
+        <p><%= message %></p>
+      </div>
+    <% end %>
+
+    <main class="mx-auto max-w-6xl p-4">
+      <%= yield %>
+    </main>
   </body>
 </html>
