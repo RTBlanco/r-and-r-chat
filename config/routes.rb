@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'inertia-example', to: 'inertia_example#index'
   devise_for :users, controllers: {
     sessions: "user/sessions",
     registrations: "user/registrations"
