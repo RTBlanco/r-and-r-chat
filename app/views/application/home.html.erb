@@ -1,0 +1,24 @@
+<div class="mx-auto max-w-4xl p-6">
+  <section class="text-center py-12">
+    <h1 class="text-4xl font-bold mb-4">Welcome to <%= Rails.application.class.module_parent_name %></h1>
+    <p class="text-lg text-gray-600 mb-8">
+      Your Rails app is up and running. Customize this page at
+      <code class="px-1 py-0.5 bg-gray-100 rounded">app/views/home/index.html.erb</code>.
+    </p>
+    <div class="flex gap-3 justify-center">
+      <%= link_to "Get Started", "#getting-started", class: "px-4 py-2 rounded bg-blue-600 text-white hover:opacity-90" %>
+      <%= link_to "Docs", "https://guides.rubyonrails.org/", target: "_blank", rel: "noopener", class: "px-4 py-2 rounded border" %>
+    </div>
+  </section>
+
+  <section id="getting-started" class="mt-12 grid gap-6 md:grid-cols-2">
+    <div class="p-5 rounded border">
+      <h2 class="text-xl font-semibold mb-2">Hotwire + Turbo</h2>
+      <p class="text-gray-600">Use Turbo & Stimulus for fast, interactive UIs with minimal JS.</p>
+    </div>
+    <div class="p-5 rounded border">
+      <h2 class="text-xl font-semibold mb-2">Models & CRUD</h2>
+      <p class="text-gray-600">Generate resources with <code>rails g scaffold Post title body:text</code>.</p>
+    </div>
+  </section>
+</div>
