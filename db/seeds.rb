@@ -9,6 +9,7 @@
 #   end
 # Seed Users
 users = [
+  { user_name: "Admin", email: "admin@example.com", password: "password" },
   { user_name: "Alice", email: "alice@example.com", password: "password1" },
   { user_name: "Bob", email: "bob@example.com", password: "password2" },
   { user_name: "Charlie", email: "charlie@example.com", password: "password3" }
@@ -29,7 +30,7 @@ chat_rooms = [
 ]
 
 chat_rooms.each do |room_attrs|
-  ChatRoom.find_or_create_by!(name: room_attrs[:name])
+  ChatRoom.find_or_create_by!(name: room_attrs[:name], user: User.find_by(user_name: "Admin"))
 end
 
 # Seed Messages

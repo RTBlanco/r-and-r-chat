@@ -1,0 +1,24 @@
+<h1>Create a new Chat Room</h1>
+
+<%= form_with(model: @chat_room, url: chat_rooms_path, local: true) do |f| %>
+  <% if @chat_room && @chat_room.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@chat_room.errors.count, "error") %> prohibited this room from being saved:</h2>
+      <ul>
+        <% @chat_room.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, autofocus: true, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create Room" %>
+    <%= link_to "Back", chat_rooms_path %>
+  </div>
+<% end %>

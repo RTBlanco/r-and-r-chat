@@ -29,17 +29,17 @@
         <% if current_user %>
           hello <%= current_user.user_name %>
           <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+          <div class="flex gap-3">
+            <%= link_to "Home", root_path %>
+            <% ChatRoom.all.each do |chat_room| %>
+              <%= link_to chat_room.name, chat_room_path(chat_room)%>
+            <% end %>
+            <%= link_to "New Room", new_chat_room_path %>
+          </div>
         <% else %>
           <%= link_to "Sign In", new_user_session_path %>
           <%= link_to "Sign Up", new_user_registration_path %>
         <% end %>
-        <div class="flex gap-3">
-          <%= link_to "Home", root_path %>
-          <% ChatRoom.all.each do |chat_room| %>
-            <%= link_to chat_room.name, chat_room_path(chat_room)%>
-          <% end %>
-          
-        </div>
       </div>
     </nav>
 
