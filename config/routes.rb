@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  get 'inertia-example', to: 'inertia_example#index'
-  get 'login', to: 'application#login', as: :login
+  get "inertia-example", to: "inertia_example#index"
+  get "login", to: "application#login", as: :login
+
   devise_for :users, controllers: {
     sessions: "user/sessions",
     registrations: "user/registrations"
   }
 
-  # resources :messages
   # resources :chat_rooms
 
   resources :chat_rooms do

@@ -9,7 +9,7 @@ import { Link, usePage } from '@inertiajs/react'
 
 //   const { user, chat_rooms }  = usePage().props;
 //   console.log(chat_rooms)
-//   return (
+//   return
 //     <main>
 //       <header>
 //         <Link href="/">Home</Link>
