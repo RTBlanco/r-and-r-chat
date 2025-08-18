@@ -12,7 +12,17 @@ class User::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    super
+    # super
+    @user = User.find_by(email: params[:user][:email])
+    if @user && @user.valid_password?(params[:user][:password])
+      puts "User authenticated successfully."
+      sign_in(@user)
+      redirect_to root_path, notice: "Signed in successfully."
+    else
+      puts "Authentication failed."
+      flash.now[:alert] = "Invalid email or password."
+      render inertia: "users/sessions/New", props: { user: params[:user] }
+    end
   end
 
   # DELETE /resource/sign_out

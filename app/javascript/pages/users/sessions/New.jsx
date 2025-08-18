@@ -5,18 +5,25 @@ import { router } from '@inertiajs/react'
 
 export default function New() {
   const [values, setValues] = useState({
-    email: '',
-    user_name: '',
-    password: '',
+    user:{
+      email: '',
+      user_name: '',
+      password: '',
+    }
   })
 
   function handleChange(e) {
-    const key = e.target.id
+    const key = e.target.name
     const value = e.target.value
     setValues((values) => ({
       ...values,
-      [key]: value,
+      user: {
+        ...values.user,
+        [key]: value,
+      },
     }))
+
+    console.log(values)
   }
 
   function handleSubmit(e) {
@@ -31,19 +38,19 @@ export default function New() {
           <div className="mb-2 block">
             <Label htmlFor="email">Your email</Label>
           </div>
-          <TextInput id="email" type="email" placeholder="name@flowbite.com" required value={values.email} onChange={handleChange}/>
+          <TextInput id="email" name="email" type="email" placeholder="name@flowbite.com" required value={values.user.email} onChange={handleChange}/>
         </div>
         <div>
           <div className="mb-2 block">
             <Label htmlFor="user_name">Your User Name</Label>
           </div>
-          <TextInput id="user_name" type="text" required value={values.user_name} onChange={handleChange}/>
+          <TextInput id="user_name" name="user_name" type="text" required value={values.user.user_name} onChange={handleChange}/>
         </div>
         <div>
           <div className="mb-2 block">
             <Label htmlFor="password">Your password</Label>
           </div>
-          <TextInput id="password" type="password" required value={values.password} onChange={handleChange}/>
+          <TextInput id="password" name="password" type="password" required value={values.user.password} onChange={handleChange}/>
         </div>
         <div className="flex items-center gap-2">
           <Checkbox id="remember" />
