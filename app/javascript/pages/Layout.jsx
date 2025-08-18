@@ -1,34 +1,5 @@
 // import 'flowbite';
 import { Link, usePage } from '@inertiajs/react'
-// import { Sidebar, SidebarItem, SidebarItemGroup, SidebarItems, SidebarLogo } from "flowbite-react";
-// import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards } from "react-icons/hi";
-
-
-
-// export default function Layout({ children }) {
-
-//   const { user, chat_rooms }  = usePage().props;
-//   console.log(chat_rooms)
-//   return
-//     <main>
-//       <header>
-//         <Link href="/">Home</Link>
-//         <Link href="/chat_rooms">Chat Rooms</Link>
-//         <Link href="/contact">Contact</Link>
-//         {(user) ? 
-//           <Link href="/users/sign_out" method='delete' >Sign Out</Link> 
-//           :
-//           <Link href="/users/sign_in">Sign In</Link> 
-//         }
-//       </header>
-//       <article>
-//         {children}
-//       </article>
-//     </main>
-//   )
-// }
-
-
 import {
   Avatar,
   Dropdown,
@@ -44,8 +15,7 @@ import {
 
 export default function Layout({children}) {
 
-  const { user, chat_rooms }  = usePage().props;
-  console.log(chat_rooms)
+  const { user }  = usePage().props;
   return (
     <>
       <Navbar fluid>
@@ -82,7 +52,9 @@ export default function Layout({children}) {
           {/* <NavbarLink href="#">Contact</NavbarLink> */}
         </NavbarCollapse>
       </Navbar>
-      {children}
+      <div className="m-8">
+        {children}
+      </div>
     </>
   );
 }

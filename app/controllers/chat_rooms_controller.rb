@@ -1,13 +1,16 @@
 class ChatRoomsController < ApplicationController
+  use_inertia_instance_props
   def index
     @chat_rooms = ChatRoom.all
 
-    render inertia: 'ChatRooms/ChatRooms', props: { chat_rooms: @chat_rooms }
+    render inertia: "ChatRooms/ChatRooms"
   end
 
   def show
     @chat_room = ChatRoom.find(params[:id])
     @messages = @chat_room.messages.includes(:user)
+
+    render inertia: "ChatRooms/ChatRoom"
   end
 
   def new

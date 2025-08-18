@@ -5,7 +5,6 @@ const Home = () => {
 
   return (
     <>
-      {console.log(user)}
       <div className="mx-auto max-w-4xl p-6 text-white" >
         <section className="text-center py-12">
           <h1 className="text-4xl font-bold mb-4">Welcome to R and R Chat</h1>

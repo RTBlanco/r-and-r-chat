@@ -22,8 +22,6 @@ export default function New() {
         [key]: value,
       },
     }))
-
-    console.log(values)
   }
 
   function handleSubmit(e) {

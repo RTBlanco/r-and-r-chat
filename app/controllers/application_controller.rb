@@ -10,29 +10,15 @@ class ApplicationController < ActionController::Base
   inertia_share do
     if user_signed_in?
       {
-        user: current_user,
-        chat_rooms: chat_rooms
+        user: current_user
       }
     end
   end
 
   def home
-    render inertia: 'Home'
+    render inertia: "Home"
   end
 
-  def login
-    render inertia: 'Login/Login'
-  end
 
   private
-
-  def chat_rooms
-    current_user.chat_rooms.map do |chat_room|
-      {
-        id: chat_room.id,
-        name: chat_room.name,
-        link: chat_room_path(chat_room)
-      }
-    end
-  end
 end
