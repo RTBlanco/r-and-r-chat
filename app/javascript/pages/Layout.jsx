@@ -46,7 +46,7 @@ export default function Layout({children}) {
             <NavbarLink href="/" as={Link} active>
               Home
             </NavbarLink>
-          <NavbarLink as={Link} href="chat_rooms">Chat Rooms</NavbarLink>
+          <NavbarLink as={Link} href="/chat_rooms">Chat Rooms</NavbarLink>
           <NavbarLink href="#">My Chat Rooms</NavbarLink>
           <NavbarLink href="#">Create Chat Room</NavbarLink>
           {/* <NavbarLink href="#">Contact</NavbarLink> */}
