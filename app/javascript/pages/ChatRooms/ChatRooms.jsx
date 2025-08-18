@@ -1,10 +1,14 @@
-import Layout from "../Layout";
+import { usePage } from "@inertiajs/react";
 
 const ChatRooms = () => {
+  const { user }  = usePage().props;
+
   return (
-    <h1>Chat Rooms</h1>
+    <>
+      <h1 className="text-white">Chat Rooms</h1>
+      {console.log(user)}
+    </>
   )
 }
 
-// ChatRooms.layout = (page) => <Layout children={page} title="Welcome" />
 export default ChatRooms;

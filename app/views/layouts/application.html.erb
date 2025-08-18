@@ -26,6 +26,8 @@
     <%= vite_javascript_tag "inertia" %>
     <%= inertia_ssr_head %>
     <%= vite_javascript_tag 'application' %>
+    
+
     <!--
       If using a TypeScript entrypoint file:
         vite_typescript_tag 'application'
@@ -38,7 +40,7 @@
 
   </head>
 
-  <body class="min-h-screen bg-white text-gray-900">
+  <body class="min-h-screen bg-white">
 
     <% flash.each do |type, message| %>
       <div class="mx-auto max-w-6xl p-4 <%= type.to_s == 'notice' ? 'bg-green-50' : 'bg-red-50' %>">
@@ -46,8 +48,8 @@
       </div>
     <% end %>
 
-    <main class="mx-auto max-w-6xl p-4">
+    <%# <main class="mx-auto max-w-6xl p-4"> %>
       <%= yield %>
-    </main>
+    <%# </main> %>
   </body>
 </html>
