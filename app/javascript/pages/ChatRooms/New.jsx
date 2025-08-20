@@ -1,4 +1,3 @@
-
 import { Button, Card, Label, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { router } from "@inertiajs/react";
@@ -22,7 +21,9 @@ export default function New() {
         <form className="flex flex-col gap-4" onSubmit={handleOnSubmit}>
           <div>
             <div className="mb-2 justify-self-center block">
-              <Label htmlFor="name">Chat Room Name</Label>
+              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Create Chat Room !
+              </h5>
             </div>
             <TextInput id="name" type="text" placeholder="name" onChange={handleOnChange}required />
           </div>
