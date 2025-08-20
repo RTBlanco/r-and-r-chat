@@ -11,9 +11,16 @@ class User::RegistrationsController < Devise::RegistrationsController
   end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    @user = User.new(sign_up_params)
+    if @user.save
+      sign_in(@user)
+      redirect_to root_path, notice: "User created successfully."
+    else
+      flash.now[:alert] = @user.errors.full_messages.join(", ")
+      redirect_to new_user_registration_path, inertia: { errors: @user.errors }
+    end
+  end
 
   # GET /resource/edit
   # def edit
