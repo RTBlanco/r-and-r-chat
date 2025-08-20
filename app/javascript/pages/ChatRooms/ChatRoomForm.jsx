@@ -15,7 +15,6 @@ export default function ChatRoomForm() {
       }   
       router.post(`/chat_rooms/${chat_room.id}/messages`, messageData)
       event.target.value = ''
-      
     }
   };
 
