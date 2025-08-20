@@ -11,7 +11,7 @@ export default function ChatRoom() {
   console.log(user)
   console.log(messages)
   return (
-    <div className="rounded-lg border border-black h-full">
+    <div className="rounded-lg  h-full">
       <ChatRoomMessages>
         {messages.map(message => (
           <Message key={message.id} message={message} />
