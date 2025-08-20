@@ -17,8 +17,11 @@ class User::RegistrationsController < Devise::RegistrationsController
       sign_in(@user)
       redirect_to root_path, notice: "User created successfully."
     else
-      flash.now[:alert] = @user.errors.full_messages.join(", ")
-      redirect_to new_user_registration_path, inertia: { errors: @user.errors }
+      errors = @user.errors.map do |key, value|
+        [ key.attribute, @user.errors.full_messages_for(key.attribute) ]
+      end.to_h
+
+      redirect_to new_user_registration_path, inertia: { errors: }
     end
   end
 
