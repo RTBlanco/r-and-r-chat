@@ -3,7 +3,7 @@ import ChatRoomCard from "./ChatRoomCard";
 import { ToggleSwitch } from "flowbite-react";
 import { useState } from "react";
 
-const ChatRooms = ({props}) => {
+const ChatRooms = () => {
   const { user, chat_rooms}  = usePage().props;
 
   const [createdBy, setCreatedBy] = useState(false);
