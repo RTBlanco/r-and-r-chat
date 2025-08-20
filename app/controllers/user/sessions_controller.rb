@@ -13,7 +13,7 @@ class User::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     # super
-    @user = User.find_by(email: params[:user][:email])
+    @user = User.find_by(user_name: params[:user][:user_name])
     if @user && @user.valid_password?(params[:user][:password])
       puts "User authenticated successfully."
       sign_in(@user)
@@ -21,7 +21,7 @@ class User::SessionsController < Devise::SessionsController
     else
       puts "Authentication failed."
       flash.now[:alert] = "Invalid email or password."
-      render inertia: "users/sessions/New", props: { user: params[:user] }
+      render inertia: "users/sessions/New"
     end
   end
 
