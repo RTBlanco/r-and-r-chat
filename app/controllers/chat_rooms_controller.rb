@@ -1,7 +1,14 @@
 class ChatRoomsController < ApplicationController
   use_inertia_instance_props
   def index
-    @chat_rooms = ChatRoom.all
+    @chat_rooms = ChatRoom.all.map do |chat_room|
+      {
+        id: chat_room.id,
+        name: chat_room.name,
+        user_id: chat_room.user_id,
+        joined: chat_room.messages.any? { |message| message.user_id == current_user.id },
+      }
+    end
 
     render inertia: "ChatRooms/ChatRooms"
   end
