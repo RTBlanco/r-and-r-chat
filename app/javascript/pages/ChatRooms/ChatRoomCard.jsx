@@ -6,7 +6,7 @@ export default function ChatRoomCard({room}) {
   console.log(room)
   return (
     <>
-    <Card className="max-w-sm">
+    <Card className="max-w-sm justify-self-center w-full">
       <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         {room.name}
       </h5>
