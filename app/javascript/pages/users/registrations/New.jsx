@@ -46,8 +46,6 @@ export default function New() {
     }
   }
 
-  console.log(errors)
-  console.log(inputError('email'))
   return (
     <div className="h-full flex justify-center">
       <Card className="max-w-sm w-full ">
