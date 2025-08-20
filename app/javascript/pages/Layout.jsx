@@ -13,9 +13,16 @@ import {
   NavbarToggle,
 } from "flowbite-react";
 
-export default function Layout({children}) {
+const navLinks = {
+  "Home" : "/",
+  "Chat Room" : "/chat_rooms",
+  "Create Chat Room" : "/chat_rooms/new"
+}
 
+export default function Layout({children}) {
   const { user }  = usePage().props;
+  const { url } = usePage()
+
   return (
     <div className="">
       <Navbar fluid>
@@ -43,12 +50,9 @@ export default function Layout({children}) {
           <NavbarToggle />
         </div>
         <NavbarCollapse>
-            <NavbarLink href="/" as={Link} active>
-              Home
-            </NavbarLink>
-          <NavbarLink as={Link} href="/chat_rooms">Chat Rooms</NavbarLink>
-          <NavbarLink as={Link} href="/chat_rooms/new">Create Chat Room</NavbarLink>
-          {/* <NavbarLink href="#">Contact</NavbarLink> */}
+          {Object.entries(navLinks).map(([key, val], index) => (
+            <NavbarLink key={index} href={val} as={Link} active={url === val}>{key}</NavbarLink>
+          ))}
         </NavbarCollapse>
       </Navbar>
       <div className="m-6 h-9/10">
