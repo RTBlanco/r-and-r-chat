@@ -31,7 +31,7 @@ export default function ChatRoomForm() {
         placeholder={`message in ${chat_room.name}`} 
         onKeyDown={handleKeyDown}
         onChange={handleChange}
-        required 
+        required
       />
     </div>
   )
