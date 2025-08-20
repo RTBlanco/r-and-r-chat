@@ -8,7 +8,17 @@ class ChatRoomsController < ApplicationController
 
   def show
     @chat_room = ChatRoom.find(params[:id])
-    @messages = @chat_room.messages.includes(:user)
+    @messages = @chat_room.messages.includes(:user).map do |message|
+      {
+        id: message.id,
+        content: message.content,
+        chat_room_id: message.chat_room_id,
+        user: {
+          id: message.user.id,
+          user_name: message.user.user_name
+        }
+      }
+    end
 
     render inertia: "ChatRooms/ChatRoom"
   end
