@@ -3,13 +3,9 @@ import { usePage } from "@inertiajs/react";
 import ChatRoomForm from "./ChatRoomForm";
 import ChatRoomMessages from "./messages/ChatRoomMessages";
 import Message from "./messages/Message";
-import { ListGroup, ListGroupItem } from "flowbite-react";
 
 export default function ChatRoom() {
-  const { user, chat_room, messages}  = usePage().props;
-
-  console.log(user)
-  console.log(messages)
+  const { user, messages}  = usePage().props;
   return (
     <div className="rounded-lg  h-full">
       <ChatRoomMessages>
