@@ -10,21 +10,7 @@ const ChatRooms = ({props}) => {
   const [joined, setJoined] = useState(false);
 
   function chatRooms() {
-
-    let rooms = []
-
-    if (joined && !createdBy) {
-      rooms = chat_rooms.filter(room => room.joined)
-    } else if (createdBy && !joined ) {
-      rooms = chat_rooms.filter(room => room.user_id === user.id)
-    } else if( joined && createdBy ) {
-      rooms = chat_rooms.filter(room => ( room.joined ) && (room.user_id === user.id))
-    } else {
-      rooms = chat_rooms
-    }
-
-    return rooms
-
+    return chat_rooms.filter(room => (!joined || room.joined) && (!createdBy || room.user_id === user.id));
   }
   
   console.log(chatRooms())
