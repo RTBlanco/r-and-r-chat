@@ -17,7 +17,7 @@ export default function Layout({children}) {
 
   const { user }  = usePage().props;
   return (
-    <div className="h-dvh dark:bg-gray-700">
+    <div className="">
       <Navbar fluid>
         <NavbarBrand href="https://flowbite-react.com">
           {/* <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" /> */}
@@ -47,8 +47,7 @@ export default function Layout({children}) {
               Home
             </NavbarLink>
           <NavbarLink as={Link} href="/chat_rooms">Chat Rooms</NavbarLink>
-          <NavbarLink href="#">My Chat Rooms</NavbarLink>
-          <NavbarLink href="#">Create Chat Room</NavbarLink>
+          <NavbarLink as={Link} href="/chat_rooms/new">Create Chat Room</NavbarLink>
           {/* <NavbarLink href="#">Contact</NavbarLink> */}
         </NavbarCollapse>
       </Navbar>
