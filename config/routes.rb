@@ -7,8 +7,10 @@ Rails.application.routes.draw do
     registrations: "user/registrations"
   }
 
+
   # resources :chat_rooms
 
+  resources :users
   resources :chat_rooms do
     resources :messages
   end
