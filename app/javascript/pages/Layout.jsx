@@ -55,7 +55,7 @@ export default function Layout({children}) {
           ))}
         </NavbarCollapse>
       </Navbar>
-      <div className="m-6 h-9/10">
+      <div className="m-6 h-[86vh]">
         {children}
       </div>
     </div>
