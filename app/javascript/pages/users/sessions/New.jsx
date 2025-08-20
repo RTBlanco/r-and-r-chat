@@ -1,7 +1,7 @@
 
 import { Button, Card, Checkbox, Label, TextInput } from "flowbite-react";
 import { useState } from "react";
-import { router } from '@inertiajs/react'
+import { router, Link } from '@inertiajs/react'
 
 export default function New() {
   const [values, setValues] = useState({
@@ -35,28 +35,27 @@ export default function New() {
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="email">Your email</Label>
-            </div>
-            <TextInput id="email" name="email" type="email" placeholder="name@flowbite.com" required value={values.user.email} onChange={handleChange}/>
-          </div>
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="user_name">Your User Name</Label>
+              <Label htmlFor="user_name">User Name</Label>
             </div>
             <TextInput id="user_name" name="user_name" type="text" required value={values.user.user_name} onChange={handleChange}/>
           </div>
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="password">Your password</Label>
+              <Label htmlFor="password">Password</Label>
             </div>
             <TextInput id="password" name="password" type="password" required value={values.user.password} onChange={handleChange}/>
           </div>
-          <div className="flex items-center gap-2">
-            <Checkbox id="remember" />
-            <Label htmlFor="remember">Remember me</Label>
-          </div>
-          <Button type="submit">Submit</Button>
+          <Button className='mt-3' type="submit">Submit</Button>
         </form>
+
+        <div className="flex items-center gap-2">
+            <Label className="flex">
+              Dont have an account?&nbsp;
+              <Link href="/users/sign_up" className="text-cyan-600 hover:underline dark:text-cyan-500">
+                Sign Up!
+              </Link>
+            </Label>
+          </div>
       </Card>
     </div>
   );
