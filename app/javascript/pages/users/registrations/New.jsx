@@ -1,9 +1,11 @@
 
-import { Button, Card, Label, TextInput } from "flowbite-react";
+import { Button, Card, Label, TextInput, HelperText} from "flowbite-react";
 import { useState } from "react";
-import { router, Link } from '@inertiajs/react'
+import { router, Link , usePage } from '@inertiajs/react'
 
 export default function New() {
+  const { errors } = usePage().props
+
   const [values, setValues] = useState({
     user:{
       email: '',
@@ -26,9 +28,26 @@ export default function New() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    router.post('/users/sign_up', values)
+    router.post('/users', values)
   }
 
+
+  function inputError(name) {
+    return typeof errors != 'undefined' && name in errors
+  }
+
+  function displayErrors(name) {
+    if (inputError(name) ){
+      return errors[name].map((e, i)=> (
+        <HelperText key={i}>
+          <span className="font-medium">Oops!</span> {e}
+        </HelperText>
+      ))
+    }
+  }
+
+  console.log(errors)
+  console.log(inputError('email'))
   return (
     <div className="h-full flex justify-center">
       <Card className="max-w-sm w-full ">
@@ -37,19 +56,32 @@ export default function New() {
             <div className="mb-2 block">
               <Label htmlFor="email">Your email</Label>
             </div>
-            <TextInput id="email" name="email" type="email" placeholder="name@rnr.com" required value={values.user.email} onChange={handleChange}/>
+            <TextInput id="email" name="email" type="email"
+              placeholder="name@rnr.com" required 
+              value={values.user.email} onChange={handleChange}  
+              color={inputError('email') ? "failure" : "gray"}
+            />
+            {displayErrors('email')}
           </div>
           <div>
             <div className="mb-2 block">
               <Label htmlFor="user_name">Your User Name</Label>
             </div>
-            <TextInput id="user_name" name="user_name" type="text" required value={values.user.user_name} onChange={handleChange}/>
+            <TextInput id="user_name" name="user_name" type="text" 
+              required value={values.user.user_name} onChange={handleChange}
+              color={inputError('user_name') ? "failure" : "gray"}
+            />
+            {displayErrors('user_name')}
           </div>
           <div>
             <div className="mb-2 block">
               <Label htmlFor="password">Your password</Label>
             </div>
-            <TextInput id="password" name="password" type="password" required value={values.user.password} onChange={handleChange}/>
+            <TextInput id="password" name="password" type="password" 
+              required value={values.user.password} onChange={handleChange}
+              color={inputError('password') ? "failure" : "gray"}
+            />
+            {displayErrors('password')}
           </div>
           <Button className='mt-3' type="submit">Submit</Button>
         </form>
