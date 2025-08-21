@@ -16,7 +16,8 @@ class User::SessionsController < Devise::SessionsController
     user = User.find_by(user_name: params[:user][:user_name])
     if user && user.valid_password?(params[:user][:password])
       sign_in(user)
-      redirect_to root_path, notice: "Signed in successfully."
+      flash[:info] = "Signed in successfully."
+      redirect_to root_path
     else
       puts "Authentication failed."
       render inertia: "users/sessions/New", props: { errors: "Invalid user name or password." }
@@ -26,7 +27,8 @@ class User::SessionsController < Devise::SessionsController
   # DELETE /resource/sign_out
   def destroy
     sign_out current_user
-    render inertia: "users/sessions/New", notice: "Signed out successfully."
+    flash[:info] = "Signed out successfully."
+    render inertia: "users/sessions/New"
   end
 
   # protected

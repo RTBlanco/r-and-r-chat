@@ -9,9 +9,11 @@ class UsersController < ApplicationController
     if current_user.update(user_params)
       if current_user.saved_change_to_encrypted_password?
 
-        redirect_to new_user_session_path, notice: "Password changed successfully. Please sign in again"
+        flash[:info] = "Password changed successfully. Please sign in again."
+        redirect_to new_user_session_path
       else
-        redirect_to edit_user_path(current_user), success: "User updated successfully."
+        flash[:success] = "User updated successfully."
+        redirect_to edit_user_path(current_user)
       end
     else
       errors = current_user.errors.map do |key, value|
