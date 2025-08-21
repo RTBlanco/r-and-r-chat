@@ -6,20 +6,18 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      if @user.saved_change_to_encrypted_password?
-        sign_out @user
+    if current_user.update(user_params)
+      if current_user.saved_change_to_encrypted_password?
 
-        redirect_to new_user_session_path, info: "Password changed successfully. Please sign in again"
+        redirect_to new_user_session_path, notice: "Password changed successfully. Please sign in again"
       else
-        flash[:success] = "User updated successfully."
-        redirect_to edit_user_path(@user), success: "User updated successfully."
+        redirect_to edit_user_path(current_user), success: "User updated successfully."
       end
     else
-      errors = @user.errors.map do |key, value|
-        [ key.attribute, @user.errors.full_messages_for(key.attribute) ]
+      errors = current_user.errors.map do |key, value|
+        [ key.attribute, current_user.errors.full_messages_for(key.attribute) ]
       end.to_h
-      redirect_to edit_user_path(@user), inertia: { errors: }
+      redirect_to edit_user_path(current_user), inertia: { errors: }
     end
   end
 
