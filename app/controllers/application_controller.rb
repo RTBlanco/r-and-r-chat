@@ -13,6 +13,11 @@ class ApplicationController < ActionController::Base
         user: current_user,
         flash: flash.to_h
       }
+    else
+      {
+        user: nil,
+        flash: flash.to_h
+      }
     end
   end
 
