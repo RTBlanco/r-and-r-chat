@@ -9,8 +9,8 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       if @user.saved_change_to_encrypted_password?
         sign_out @user
-        flash[:info] = "Password changed successfully. Please sign in again."
-        redirect_to new_user_session_path, notice: "Password changed successfully. Please sign in again"
+
+        redirect_to new_user_session_path, info: "Password changed successfully. Please sign in again"
       else
         flash[:success] = "User updated successfully."
         redirect_to edit_user_path(@user), success: "User updated successfully."
