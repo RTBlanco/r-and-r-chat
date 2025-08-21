@@ -1,5 +1,5 @@
 
-import { Button, Card, Label, TextInput, Avatar } from "flowbite-react";
+import { Button, Card, Label, TextInput, Avatar, HelperText, Alert } from "flowbite-react";
 import { useState } from "react";
 import { router, usePage } from '@inertiajs/react'
 
@@ -9,7 +9,7 @@ export default function Edit() {
     user:{
       email: user.email,
       user_name: user.user_name,
-      password: '',
+      password: null,
     }
   })
 
@@ -27,13 +27,24 @@ export default function Edit() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    if (values.user.password.length === 0) {
-      delete values.user.password
-    }
     router.patch(`/users/${user.id}`, values)
+
   }
 
-  console.log(errors)
+  function inputError(name) {
+    return typeof errors != 'undefined' && name in errors
+  }
+
+  function displayErrors(name) {
+    if (inputError(name) ){
+      return errors[name].map((e, i)=> (
+        <HelperText key={i}>
+          <span className="font-medium">Oops!</span> {e}
+        </HelperText>
+      ))
+    }
+  }
+
   return (
     <div className="h-full flex justify-center">
       <Card className="max-w-sm w-full ">
@@ -47,13 +58,21 @@ export default function Edit() {
             <div className="mb-2 block">
               <Label htmlFor="email">Your email</Label>
             </div>
-            <TextInput id="email" name="email" type="email" value={values.user.email} onChange={handleChange}/>
+            <TextInput id="email" name="email" type="email"
+              value={values.user.email} onChange={handleChange}
+              color={inputError('email') ? "failure" : "gray"}
+            />
+            {displayErrors('email')}
           </div>
           <div>
             <div className="mb-2 block">
               <Label htmlFor="user_name">Your User Name</Label>
             </div>
-            <TextInput id="user_name" name="user_name" type="text" value={values.user.user_name} onChange={handleChange}/>
+            <TextInput id="user_name" name="user_name" type="text"
+              value={values.user.user_name} onChange={handleChange}
+              color={inputError('user_name') ? "failure" : "gray"}
+            />
+            {displayErrors('user_name')}
           </div>
           <div>
             <div className="mb-2 block">
