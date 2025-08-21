@@ -15,7 +15,7 @@ class User::RegistrationsController < Devise::RegistrationsController
     @user = User.new(sign_up_params)
     if @user.save
       sign_in(@user)
-      redirect_to root_path, notice: "User created successfully."
+      redirect_to root_path, success: "User created successfully."
     else
       errors = @user.errors.map do |key, value|
         [ key.attribute, @user.errors.full_messages_for(key.attribute) ]
