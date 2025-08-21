@@ -7,9 +7,19 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to root_path, notice: "User updated successfully."
+      if @user.saved_change_to_encrypted_password?
+        sign_out @user
+        flash[:info] = "Password changed successfully. Please sign in again."
+        redirect_to new_user_session_path, notice: "Password changed successfully. Please sign in again"
+      else
+        flash[:success] = "User updated successfully."
+        redirect_to edit_user_path(@user), success: "User updated successfully."
+      end
     else
-      render inertia: "users/edit/Edit", props: { errors: @user.errors }
+      errors = @user.errors.map do |key, value|
+        [ key.attribute, @user.errors.full_messages_for(key.attribute) ]
+      end.to_h
+      redirect_to edit_user_path(@user), inertia: { errors: }
     end
   end
 
