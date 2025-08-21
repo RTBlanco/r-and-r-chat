@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
   inertia_share do
     if user_signed_in?
       {
-        user: current_user
+        user: current_user,
+        flash: flash.to_h
       }
-
     end
   end
 
