@@ -11,6 +11,7 @@ import {
   NavbarCollapse,
   NavbarLink,
   NavbarToggle,
+  Alert
 } from "flowbite-react";
 
 const navLinks = {
@@ -20,10 +21,19 @@ const navLinks = {
 }
 
 export default function Layout({children}) {
-  const { user }  = usePage().props;
+  const { user, flash }  = usePage().props;
   const { url } = usePage()
 
-  console.log(user)
+
+
+  function renderAlert(alert){
+    return (
+      <Alert className="w-full my-6" color="success" onDismiss={() => alert('Alert dismissed!')}>
+        Saved Succsefully.
+      </Alert>
+    )
+  }
+  console.log(flash)
   return (
     <>
       <Navbar fluid>
@@ -58,6 +68,7 @@ export default function Layout({children}) {
           </>
         )}
       </Navbar>
+      {/* {renderAlert()} */}
       <div className="m-6 h-[86vh]">
         {children}
       </div>
