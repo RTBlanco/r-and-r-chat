@@ -1,5 +1,6 @@
 // import 'flowbite';
 import { Link, usePage } from '@inertiajs/react'
+import { useRef } from 'react';
 import {
   Avatar,
   Dropdown,
@@ -23,17 +24,24 @@ const navLinks = {
 export default function Layout({children}) {
   const { user, flash }  = usePage().props;
   const { url } = usePage()
+  const alertRef = useRef(null)
 
 
 
-  function renderAlert(alert){
-    return (
-      <Alert className="w-full my-6" color="success" onDismiss={() => alert('Alert dismissed!')}>
-        Saved Succsefully.
+  function renderAlert(){
+    return Object.entries(flash).map(([key, value], i) => (
+      <Alert ref={alertRef} key={i} className="w-full my-6" color={key} onDismiss={(e) => alertRef.current.remove()}>
+        {value}
       </Alert>
-    )
+    ))
+
+    // return (
+    //   <Alert  className="w-full my-6" color="info" onDismiss={(e) => alertRef.current.remove()}>
+    //     test
+    //   </Alert>
+    // )
   }
-  console.log(flash)
+  console.log("Flash ->", flash)
   return (
     <>
       <Navbar fluid>
@@ -68,7 +76,7 @@ export default function Layout({children}) {
           </>
         )}
       </Navbar>
-      {/* {renderAlert()} */}
+      {renderAlert()}
       <div className="m-6 h-[86vh]">
         {children}
       </div>
