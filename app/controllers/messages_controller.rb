@@ -5,9 +5,10 @@ class MessagesController < ApplicationController
     @message = current_user.messages.new(message_params.merge(chat_room: @chat_room))
 
     if @message.save
-      redirect_to chat_room_path(@chat_room), notice: "Message was successfully created."
+      redirect_to chat_room_path(@chat_room)
     else
-      redirect_to chat_room_path(@chat_room), alert: "Error creating message."
+      flash[:failure] = "Error creating message."
+      redirect_to chat_room_path(@chat_room)
     end
   end
 
