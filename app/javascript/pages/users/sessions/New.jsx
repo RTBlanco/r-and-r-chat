@@ -1,9 +1,11 @@
 
-import { Button, Card, Checkbox, Label, TextInput } from "flowbite-react";
+import { Button, Card, Checkbox, Label, TextInput, HelperText } from "flowbite-react";
 import { useState } from "react";
-import { router, Link } from '@inertiajs/react'
+import { router, Link, usePage } from '@inertiajs/react'
 
 export default function New() {
+
+  const { errors } = usePage().props
   const [values, setValues] = useState({
     user:{
       email: '',
@@ -37,13 +39,24 @@ export default function New() {
             <div className="mb-2 block">
               <Label htmlFor="user_name">User Name</Label>
             </div>
-            <TextInput id="user_name" name="user_name" type="text" required value={values.user.user_name} onChange={handleChange}/>
+            <TextInput id="user_name" name="user_name" type="text" required 
+              value={values.user.user_name} onChange={handleChange}
+              color={errors ? "failure" : "gray"}
+            />
           </div>
           <div>
             <div className="mb-2 block">
               <Label htmlFor="password">Password</Label>
             </div>
-            <TextInput id="password" name="password" type="password" required value={values.user.password} onChange={handleChange}/>
+            <TextInput id="password" name="password" type="password" required
+              value={values.user.password} onChange={handleChange}
+              color={errors ? "failure" : "gray"}
+            />
+            { errors &&
+              <HelperText>
+                <span className="font-medium">Oops!</span> {errors}
+              </HelperText>
+            }
           </div>
           <Button className='mt-3' type="submit">Submit</Button>
         </form>
