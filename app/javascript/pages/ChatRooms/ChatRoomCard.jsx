@@ -3,7 +3,6 @@ import { Link } from "@inertiajs/react";
 import { Button, Card } from "flowbite-react";
 
 export default function ChatRoomCard({room}) {
-  console.log(room)
   return (
     <>
     <Card className="max-w-sm justify-self-center h-50 w-full">

@@ -13,7 +13,6 @@ const ChatRooms = () => {
     return chat_rooms.filter(room => (!joined || room.joined) && (!createdBy || room.user_id === user.id));
   }
   
-  console.log(chatRooms())
   return (
     <>
       <div className="mb-2 flex justify-center w-full gap-2" >
