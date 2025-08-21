@@ -19,15 +19,14 @@ class User::SessionsController < Devise::SessionsController
       redirect_to root_path, notice: "Signed in successfully."
     else
       puts "Authentication failed."
-      flash[:alert] = "Invalid email or password."
-      render inertia: "users/sessions/New"
+      render inertia: "users/sessions/New", props: { errors: "Invalid user name or password." }
     end
   end
 
   # DELETE /resource/sign_out
   def destroy
     sign_out current_user
-    render inertia: "users/sessions/New"
+    render inertia: "users/sessions/New", notice: "Signed out successfully."
   end
 
   # protected
