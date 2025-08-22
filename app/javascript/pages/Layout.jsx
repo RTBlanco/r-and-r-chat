@@ -33,16 +33,12 @@ export default function Layout({children}) {
   function renderAlert(){
     if (Object.keys(showAlert).length === 0 ) { return }
     return (
-      <Alert className="w-full my-6" color={Object.keys(showAlert)[0]} onDismiss={removeAlert}>
+      <Alert className="w-full my-6" color={Object.keys(showAlert)[0]} onDismiss={() => setShowAlert({})}>
         {Object.values(showAlert)[0]}
       </Alert>
     )
   }
 
-  function removeAlert() {
-    setShowAlert({})
-  }
-  console.log("Flash ->", flash)
   return (
     <>
       <Navbar fluid>
