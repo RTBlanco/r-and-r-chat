@@ -2,6 +2,7 @@
 import { Button, Card, Label, TextInput, Avatar, HelperText, Alert } from "flowbite-react";
 import { useState } from "react";
 import { router, usePage } from '@inertiajs/react'
+import { HiPencil } from "react-icons/hi"
 
 export default function Edit() {
   const { user, errors} = usePage().props
@@ -49,11 +50,16 @@ export default function Edit() {
     <div className="h-full flex justify-center">
       <Card className="max-w-sm w-full ">
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-          <div className="">
-            <div className="mb-2 block">
-              <Avatar img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="avatar of Jese" size="xl" rounded />
+
+          <div className="mb-2 block flex justify-center">
+            <div className="relative inline-block">
+              <Avatar img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded size="xl" />
+              <div className="absolute bottom-0 right-0 bg-white rounded-full p-1 border border-gray-200 cursor-pointer">
+                <HiPencil className="w-4 h-4 text-gray-600" />
+              </div>
             </div>
           </div>
+
           <div>
             <div className="mb-2 block">
               <Label htmlFor="email">Your email</Label>
