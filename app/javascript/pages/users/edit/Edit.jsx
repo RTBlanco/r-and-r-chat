@@ -7,13 +7,13 @@ import { Modal } from "flowbite-react";
 import EditModal from "./EditModal";
 
 export default function Edit() {
-  const { user, errors} = usePage().props
+  const { user, avatar, errors} = usePage().props
   const [values, setValues] = useState({
     user:{
       email: user.email,
       user_name: user.user_name,
       password: undefined,
-      avatar: null
+      avatar: avatar
     }
   })
 
@@ -21,7 +21,8 @@ export default function Edit() {
 
   function handleChange(e) {
     const key = e.target.name
-    const value = e.target.value
+    let value = key === 'avatar' ? e.target.files[0] : e.target.value
+
     setValues((values) => ({
       ...values,
       user: {
@@ -33,9 +34,25 @@ export default function Edit() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(values)
-    // router.patch(`/users/${user.id}`, values)
+    let data = structuredClone(values)
 
+    if (data.user.password === undefined) {
+      delete data.user.password
+    } 
+    
+    if (typeof data.user.avatar === 'string') {
+      delete data.user.avatar
+    }
+
+    setValues((values) => ({
+      ...values,
+      user: {
+        ...values.user,
+        ["avatar"]: "",
+      },
+    }))
+
+    router.patch(`/users/${user.id}`, data)
   }
 
   function inputError(name) {
@@ -52,6 +69,8 @@ export default function Edit() {
     }
   }
 
+  console.log("user -> ", user)
+  console.log('avatar -> ', avatar)
   return (
     <div className="h-full flex justify-center">
       <Card className="max-w-sm w-full ">
@@ -59,13 +78,13 @@ export default function Edit() {
 
           <div className="mb-2 block flex justify-center">
             <div className="relative inline-block">
-              <Avatar img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded size="xl" />
+              <Avatar img={avatar} rounded size="xl" />
               <div onClick={() => setShowModal(true)} className="absolute bottom-0 right-0 bg-white rounded-full p-1 border border-gray-200 cursor-pointer">
                 <HiPencil className="w-4 h-4 text-gray-600" />
               </div>
             </div>
           </div>
-          {values.user.avatar && 
+          {typeof values.user.avatar != 'string' && 
             <div className="">
               <Badge icon={HiCheck}>Updating Avatar</Badge>
             </div>

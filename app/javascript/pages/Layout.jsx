@@ -22,7 +22,7 @@ const navLinks = {
 }
 
 export default function Layout({children}) {
-  const { user, flash }  = usePage().props;
+  const { user, avatar, flash }  = usePage().props;
   const { url } = usePage()
   const [showAlert, setShowAlert] = useState({})
 
@@ -53,7 +53,7 @@ export default function Layout({children}) {
                 arrowIcon={false}
                 inline
                 label={
-                  <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+                  <Avatar alt="User settings" img={avatar} rounded />
                 }
               >
                 <DropdownHeader>
