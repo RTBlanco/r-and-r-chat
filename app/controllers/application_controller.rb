@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       {
         user: current_user,
+        avatar: current_user.avatar.attached? ? url_for(current_user.avatar) : nil,
         flash: flash.to_h
       }
     else
