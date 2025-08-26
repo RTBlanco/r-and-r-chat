@@ -1,6 +1,6 @@
 import { usePage } from "@inertiajs/react";
 import ChatRoomCard from "./ChatRoomCard";
-import { ToggleSwitch } from "flowbite-react";
+import { ToggleSwitch, TextInput } from "flowbite-react";
 import { useState } from "react";
 
 const ChatRooms = () => {
@@ -8,13 +8,21 @@ const ChatRooms = () => {
 
   const [createdBy, setCreatedBy] = useState(false);
   const [joined, setJoined] = useState(false);
+  const [searched, setSearched] = useState('')
 
   function chatRooms() {
-    return chat_rooms.filter(room => (!joined || room.joined) && (!createdBy || room.user_id === user.id));
+    return chat_rooms.filter(room => {
+      
+      const joinedCheck = !joined || room.joined
+      const createdCheck = !createdBy || room.user_id === user.id
+      const searchCheck = !searched || room.name.toLowerCase().includes(searched)
+      
+      return joinedCheck && createdCheck && searchCheck
+    });
   }
-  
   return (
     <>
+      <TextInput className='mb-1' type="text" onChange={(e) => setSearched(e.target.value)}/>
       <div className="mb-2 flex justify-center w-full gap-2" >
         <ToggleSwitch checked={createdBy} label="Created By me" onChange={setCreatedBy} />
         <ToggleSwitch checked={joined} label="Joined" onChange={setJoined} />
