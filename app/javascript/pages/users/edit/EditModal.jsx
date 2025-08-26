@@ -7,7 +7,7 @@ export default function EdtModal({show, close, handleChange}) {
     close(false)
     handleChange(e)
   }
-  
+
   return (
     <>
       <Modal show={show} onClose={() => close(false)}>
