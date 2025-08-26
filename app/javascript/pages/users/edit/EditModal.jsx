@@ -1,7 +1,13 @@
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "flowbite-react";
 import { FileInput, Label } from "flowbite-react";
 
-export default function EdtModal({show, close}) {
+export default function EdtModal({show, close, handleChange}) {
+
+  const handleFileInputChange = (e) => {
+    close(false)
+    handleChange(e)
+  }
+  
   return (
     <>
       <Modal show={show} onClose={() => close(false)}>
@@ -33,13 +39,10 @@ export default function EdtModal({show, close}) {
                 </p>
                 <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
               </div>
-              <FileInput id="dropzone-file" className="hidden" />
+              <FileInput name='avatar' onChange={handleFileInputChange} id="dropzone-file" className="hidden" />
             </Label>
           </div>
         </ModalBody>
-        <ModalFooter>
-          <Button onClick={() => close(false)}>Enter</Button>
-        </ModalFooter>
       </Modal>
     </>
   );

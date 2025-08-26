@@ -1,8 +1,8 @@
 
-import { Button, Card, Label, TextInput, Avatar, HelperText, Alert } from "flowbite-react";
+import { Button, Card, Label, TextInput, Avatar, HelperText, Badge } from "flowbite-react";
 import { useState } from "react";
-import { router, usePage } from '@inertiajs/react'
-import { HiPencil } from "react-icons/hi"
+import { router, usePage} from '@inertiajs/react'
+import { HiPencil, HiCheck } from "react-icons/hi"
 import { Modal } from "flowbite-react";
 import EditModal from "./EditModal";
 
@@ -12,7 +12,8 @@ export default function Edit() {
     user:{
       email: user.email,
       user_name: user.user_name,
-      password: null,
+      password: undefined,
+      avatar: null
     }
   })
 
@@ -32,7 +33,8 @@ export default function Edit() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    router.patch(`/users/${user.id}`, values)
+    console.log(values)
+    // router.patch(`/users/${user.id}`, values)
 
   }
 
@@ -63,7 +65,11 @@ export default function Edit() {
               </div>
             </div>
           </div>
-
+          {values.user.avatar && 
+            <div className="">
+              <Badge icon={HiCheck}>Updating Avatar</Badge>
+            </div>
+          }
           <div>
             <div className="mb-2 block">
               <Label htmlFor="email">Your email</Label>
@@ -93,7 +99,7 @@ export default function Edit() {
           <Button className='mt-3' type="submit">Save</Button>
         </form>
       </Card>
-      <EditModal show={showModal} close={setShowModal}/>
+      <EditModal show={showModal} close={setShowModal} handleChange={handleChange} />
     </div>
   );
 }
