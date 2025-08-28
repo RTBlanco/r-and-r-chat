@@ -1,4 +1,5 @@
 import { usePage } from "@inertiajs/react";
+import logo from "../assets/logo.svg";
 
 const Home = () => {
   const { user } = usePage().props;
@@ -14,7 +15,9 @@ const Home = () => {
             Messages update instantly through WebSockets, giving you a smooth, live experience without page reloads.
           </p>
         </section>
-
+        <div className="w-full flex justify-center">
+          <img className="" src={logo} alt="logo" />
+        </div>
         <section id="getting-started" className="text-center py-5">
           <p className="text-lg mb-8">
             I created this project to learn and showcase how modern tools like Ruby on Rails, Inertia.js, and React can work together to power real-time applications. 
