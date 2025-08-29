@@ -27,7 +27,7 @@ export default function ChatRoomForm() {
     <div className="w-full">
       <TextInput 
         id="message" 
-        type="test" 
+        type="text"
         placeholder={`message in ${chat_room.name}`} 
         onKeyDown={handleKeyDown}
         onChange={handleChange}
