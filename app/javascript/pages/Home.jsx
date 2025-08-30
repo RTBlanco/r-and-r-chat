@@ -6,8 +6,8 @@ const Home = () => {
 
   return (
     <>
-      <div className="mx-auto max-w-4xl p-6 text-white" >
-        <section className="text-center py-12">
+      <div className="mx-auto max-w-4xl px-6 text-white lg:pt-6" >
+        <section className="text-center ">
           <h1 className="text-4xl font-bold mb-8">Welcome to R and R Chat</h1>
           <p className="text-lg">
             This app was built as a lightweight, 
