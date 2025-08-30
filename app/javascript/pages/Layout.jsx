@@ -39,6 +39,10 @@ export default function Layout({children}) {
     )
   }
 
+  function addOverFlow() {
+    const overflow = url.match(/^\/chat_rooms\/(\d+)$/) && "overflow-hidden"
+    return `h-full px-6 pt-6 ${overflow}`
+  }
   return (
     <div className="h-dvh flex flex-col">
       <Navbar fluid>
@@ -73,7 +77,7 @@ export default function Layout({children}) {
         )}
       </Navbar>
       {renderAlert()}
-      <div className="h-full overflow-hidden px-6 pt-6">
+      <div className={addOverFlow()}>
         {children}
       </div>
     </div>
