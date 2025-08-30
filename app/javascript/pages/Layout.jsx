@@ -41,10 +41,8 @@ export default function Layout({children}) {
 
   return (
     <div className="h-dvh flex flex-col">
-      {/* className='fixed w-full z-20 top-0 start-0' */}
       <Navbar fluid>
         <NavbarBrand href="https://github.com/RTBlanco/r-and-r-chat">
-          {/* <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" /> */}
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">R & R</span>
         </NavbarBrand>
         {!user || (
@@ -75,7 +73,6 @@ export default function Layout({children}) {
         )}
       </Navbar>
       {renderAlert()}
-      {/* <div className="h-[86vh] mx-6 mt-6"> */}
       <div className="h-full overflow-hidden px-6 pt-6">
         {children}
       </div>
