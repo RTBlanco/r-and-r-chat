@@ -6,7 +6,7 @@ import Message from "./messages/Message";
 import { useState } from "react";
 
 export default function ChatRoom() {
-  const { user, messages}  = usePage().props;
+  const {messages}  = usePage().props;
   const [newMessage, setNewMessage] = useState(false)
 
   return (
