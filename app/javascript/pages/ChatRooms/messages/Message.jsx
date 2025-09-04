@@ -14,7 +14,6 @@ export default function Message({message}) {
   }
 
   return (
-    // <ListGroupItem className="ark:hover:bg-gray-500">
     <div className="mb-2 rounded-lg dark:hover:bg-gray-500">
       <div className="flex">
         <Avatar className="mr-4 relative" img={userImg()} rounded />
@@ -27,7 +26,6 @@ export default function Message({message}) {
         </div>
       </div>
     </div>
-    // </ListGroupItem>
   )
 }
 
