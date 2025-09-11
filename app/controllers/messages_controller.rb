@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
     @message = current_user.messages.new(message_params.merge(chat_room: @chat_room))
 
     if @message.save
+      ChatRoomChannel.broadcast_to(@chat_room, @message.content)
       redirect_to chat_room_path(@chat_room)
     else
       flash[:failure] = "Error creating message."
