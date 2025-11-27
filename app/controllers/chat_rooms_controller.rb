@@ -22,7 +22,8 @@ class ChatRoomsController < ApplicationController
         chat_room_id: message.chat_room_id,
         user: {
           id: message.user.id,
-          user_name: message.user.user_name
+          user_name: message.user.user_name,
+          avatar: message.user.avatar.attached? ? url_for(message.user.avatar) : nil
         }
       }
     end
