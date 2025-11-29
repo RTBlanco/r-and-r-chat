@@ -2,7 +2,7 @@ import { TextInput, Label } from "flowbite-react"
 import { usePage, router } from "@inertiajs/react";
 import { useState } from "react";
 
-export default function ChatRoomForm() {
+export default function ChatRoomForm({className}) {
   const {user, chat_room}  = usePage().props;
 
   const [message, setMessage ] = useState("")
@@ -24,7 +24,7 @@ export default function ChatRoomForm() {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 w-full">
+    <div className={className}>
       <TextInput 
         id="message" 
         type="text"
