@@ -62,7 +62,7 @@ export default function Layout({children}) {
                 <DropdownHeader>
                   <span className="block truncate text-sm font-medium">{user.user_name}</span>
                 </DropdownHeader>
-                <DropdownItem as={Link} href={`/users/${user.id}/edit`}>Settings</DropdownItem>
+                <DropdownItem as={Link} href={`/users/${user.id}/edit`}>Edit</DropdownItem>
                 <DropdownDivider />
                 <DropdownItem as={Link} method='delete' href='/users/sign_out'>Sign out</DropdownItem>
               </Dropdown>
