@@ -6,7 +6,7 @@ class ChatRoomsController < ApplicationController
         id: chat_room.id,
         name: chat_room.name,
         user_id: chat_room.user_id,
-        joined: chat_room.messages.any? { |message| message.user_id == current_user.id },
+        joined: chat_room.messages.any? { |message| message.user_id == current_user.id }
       }
     end
 
