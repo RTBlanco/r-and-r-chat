@@ -24,7 +24,7 @@ export default function ChatRoomForm() {
   }
 
   return (
-    <div className="w-full">
+    <div className="fixed bottom-0 left-0 w-full">
       <TextInput 
         id="message" 
         type="text"
