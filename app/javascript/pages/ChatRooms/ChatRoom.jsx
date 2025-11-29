@@ -46,8 +46,8 @@ export default function ChatRoom() {
             <Message key={message.id} message={message} />
           ))}
         </ChatRoomMessages>
-        <ChatRoomForm />
       </div>
+      <ChatRoomForm />
     </>
   );
 }
