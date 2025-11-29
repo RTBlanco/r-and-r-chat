@@ -34,17 +34,20 @@ consumer.subscriptions.create("ChatRoomChannel", {
 
 
 export default function ChatRoom() {
-  const {messages}  = usePage().props;
+  const {chat_room, messages}  = usePage().props;
   const [newMessage, setNewMessage] = useState(false)
 
   return (
-    <div className="rounded-lg flex flex-col justify-between h-full">
-      <ChatRoomMessages>
-        {messages.map(message => (
-          <Message key={message.id} message={message} />
-        ))}
-      </ChatRoomMessages>
-      <ChatRoomForm />
-    </div>
+    <>
+      <h1 className="flex justify-center text-sky-50">{chat_room.name}</h1>
+      <div className="rounded-lg flex flex-col justify-between h-full">
+        <ChatRoomMessages>
+          {messages.map(message => (
+            <Message key={message.id} message={message} />
+          ))}
+        </ChatRoomMessages>
+        <ChatRoomForm />
+      </div>
+    </>
   );
 }
