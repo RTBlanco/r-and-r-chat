@@ -47,7 +47,7 @@ export default function ChatRoom() {
           ))}
         </ChatRoomMessages>
       </div>
-      <ChatRoomForm />
+      <ChatRoomForm className='fixed bottom-0 left-0 w-full'/>
     </>
   );
 }
