@@ -15,7 +15,6 @@ export default function ChatRoom() {
   const {chat_room, messages}  = usePage().props;
   const [newMessage, setNewMessage] = useState(false)
 
-  // console.log(chat_room)
   App.cable.subscriptions.create({ channel: "ChatRoomChannel", chat_room_id: chat_room.id }, {
     connected() {
       console.log("Connected to the channel:", this);
@@ -25,6 +24,9 @@ export default function ChatRoom() {
     },
     received(data) {
       console.log("Received some data:", data);
+      console.log(messages)
+      // data is not showing because its not causing a page re-render
+      messages.push(data)
     }
   });
   
