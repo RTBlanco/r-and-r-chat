@@ -6,36 +6,29 @@ import Message from "./messages/Message";
 import { useState } from "react";
 
 
-import consumer from "../../channels/consumer"
-
-consumer.subscriptions.create("ChatRoomChannel", {
-  // connected() {
-  //   // Called when the subscription is ready for use on the server
-  // },
-
-  // disconnected() {
-  //   // Called when the subscription has been terminated by the server
-  // },
-
-  // received(data) {
-  //   // Called when there's incoming data on the websocket for this channel
-  // }
-
-  connected() {
-    console.log("Connected to the channel:", this);
-  },
-  disconnected() {
-    console.log("Disconnected");
-  },
-  received(data) {
-    console.log("Received some data:", data);
-  }
-});
+import * as ActionCable from '@rails/actioncable'
+window.App || (window.App = {});
+window.App.cable = ActionCable.createConsumer();
 
 
 export default function ChatRoom() {
   const {chat_room, messages}  = usePage().props;
   const [newMessage, setNewMessage] = useState(false)
+
+  // console.log(chat_room)
+  App.cable.subscriptions.create({ channel: "ChatRoomChannel", chat_room_id: chat_room.id }, {
+    connected() {
+      console.log("Connected to the channel:", this);
+    },
+    disconnected() {
+      console.log("Disconnected");
+    },
+    received(data) {
+      console.log("Received some data:", data);
+    }
+  });
+  
+  
 
   return (
     <>
