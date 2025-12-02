@@ -14,6 +14,7 @@ window.App.cable = ActionCable.createConsumer();
 export default function ChatRoom() {
   const {chat_room, messages}  = usePage().props;
   const [newMessage, setNewMessage] = useState(false)
+  const [statetMessages, setStateMessages] = useState(messages)
 
   App.cable.subscriptions.create({ channel: "ChatRoomChannel", chat_room_id: chat_room.id }, {
     connected() {
@@ -25,8 +26,7 @@ export default function ChatRoom() {
     received(data) {
       console.log("Received some data:", data);
       console.log(messages)
-      // data is not showing because its not causing a page re-render
-      messages.push(data)
+      setStateMessages( m => [...m, data] )
     }
   });
   
@@ -37,7 +37,7 @@ export default function ChatRoom() {
       <h1 className="flex justify-center text-sky-50">{chat_room.name}</h1>
       <div className="rounded-lg flex flex-col justify-between h-full">
         <ChatRoomMessages>
-          {messages.map(message => (
+          {statetMessages.map(message => (
             <Message key={message.id} message={message} />
           ))}
         </ChatRoomMessages>
