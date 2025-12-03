@@ -16,7 +16,7 @@ class MessagesController < ApplicationController
         }
       }
       ChatRoomChannel.broadcast_to(@chat_room, @message)
-      redirect_to chat_room_path(@chat_room)
+      # redirect_to chat_room_path(@chat_room) // this makes it reload the page
     else
       flash[:failure] = "Error creating message."
       redirect_to chat_room_path(@chat_room)
