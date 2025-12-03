@@ -3,7 +3,7 @@ import { usePage } from "@inertiajs/react";
 import ChatRoomForm from "./ChatRoomForm";
 import ChatRoomMessages from "./messages/ChatRoomMessages";
 import Message from "./messages/Message";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 import * as ActionCable from '@rails/actioncable'
@@ -13,9 +13,8 @@ window.App.cable = ActionCable.createConsumer();
 
 export default function ChatRoom() {
   const {chat_room, messages}  = usePage().props;
-  const [newMessage, setNewMessage] = useState(false)
   const [statetMessages, setStateMessages] = useState(messages)
-
+  
   App.cable.subscriptions.create({ channel: "ChatRoomChannel", chat_room_id: chat_room.id }, {
     connected() {
       console.log("Connected to the channel:", this);
@@ -25,13 +24,14 @@ export default function ChatRoom() {
     },
     received(data) {
       console.log("Received some data:", data);
-      console.log(messages)
+      // console.log(messages) 
       setStateMessages( m => [...m, data] )
+      console.log(statetMessages)
     }
   });
   
   
-
+   
   return (
     <>
       <h1 className="flex justify-center text-sky-50">{chat_room.name}</h1>
