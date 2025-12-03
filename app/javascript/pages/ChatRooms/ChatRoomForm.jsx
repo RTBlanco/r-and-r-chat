@@ -1,10 +1,11 @@
-import { TextInput, Label } from "flowbite-react"
-import { usePage, router } from "@inertiajs/react";
-import { useState } from "react";
+import { TextInput } from "flowbite-react"
+import { usePage } from "@inertiajs/react";
 import { Form } from '@inertiajs/react'
+
 
 export default function ChatRoomForm({className}) {
   const {user, chat_room}  = usePage().props;
+
 
   return (
     <Form className={className} 
