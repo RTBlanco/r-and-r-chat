@@ -36,6 +36,7 @@ export default function ChatRoomForm({className}) {
       }   
       router.post(`/chat_rooms/${chat_room.id}/messages`, messageData, {except: ['chat_room', 'messages']})
       event.target.value = ''
+      event.target.blur();
     }
   };
 
@@ -53,6 +54,7 @@ export default function ChatRoomForm({className}) {
         onKeyDown={handleKeyDown}
         onChange={handleChange}
         required
+        sizing="lg"
       />
     </div>
   )
