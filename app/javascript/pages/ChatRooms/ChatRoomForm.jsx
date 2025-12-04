@@ -36,7 +36,7 @@ export default function ChatRoomForm({className}) {
       }   
       router.post(`/chat_rooms/${chat_room.id}/messages`, messageData, {except: ['chat_room', 'messages']})
       event.target.value = ''
-      event.target.blur();
+      event.target.blur(); // make this only work form mobile
     }
   };
 
