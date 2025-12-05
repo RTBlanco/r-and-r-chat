@@ -32,7 +32,6 @@ class ChatRoomsController < ApplicationController
   end
 
   def new
-    # @chat_room = ChatRoom.new
     render inertia: "ChatRooms/New"
   end
 
