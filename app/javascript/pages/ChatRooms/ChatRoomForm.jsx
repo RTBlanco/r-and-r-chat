@@ -2,9 +2,10 @@ import { TextInput } from "flowbite-react"
 import { usePage, router } from "@inertiajs/react";
 import { Form } from '@inertiajs/react'
 import { useState } from "react";
-
+import { useMediaQuery } from 'react-responsive';
 
 export default function ChatRoomForm({className}) {
+  const isMobile = useMediaQuery({query: '(max-width: 600px'})
   const {user, chat_room}  = usePage().props;
 
 
@@ -36,7 +37,9 @@ export default function ChatRoomForm({className}) {
       }   
       router.post(`/chat_rooms/${chat_room.id}/messages`, messageData, {except: ['chat_room', 'messages']})
       event.target.value = ''
-      event.target.blur(); // make this only work form mobile
+      if (isMobile) {
+        event.target.blur();
+      }
     }
   };
 
