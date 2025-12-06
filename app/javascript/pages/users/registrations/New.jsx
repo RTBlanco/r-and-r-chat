@@ -54,7 +54,7 @@ export default function New() {
             <div className="mb-2 block">
               <Label htmlFor="email">Your email</Label>
             </div>
-            <TextInput id="email" name="email" type="email"
+            <TextInput sizing="lg" id="email" name="email" type="email"
               placeholder="name@rnr.com" required 
               value={values.user.email} onChange={handleChange}  
               color={inputError('email') ? "failure" : "gray"}
@@ -65,7 +65,7 @@ export default function New() {
             <div className="mb-2 block">
               <Label htmlFor="user_name">Your User Name</Label>
             </div>
-            <TextInput id="user_name" name="user_name" type="text" 
+            <TextInput sizing="lg" id="user_name" name="user_name" type="text" 
               required value={values.user.user_name} onChange={handleChange}
               color={inputError('user_name') ? "failure" : "gray"}
             />
@@ -75,7 +75,7 @@ export default function New() {
             <div className="mb-2 block">
               <Label htmlFor="password">Your password</Label>
             </div>
-            <TextInput id="password" name="password" type="password" 
+            <TextInput sizing="lg" id="password" name="password" type="password" 
               required value={values.user.password} onChange={handleChange}
               color={inputError('password') ? "failure" : "gray"}
             />

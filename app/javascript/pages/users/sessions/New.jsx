@@ -39,7 +39,7 @@ export default function New() {
             <div className="mb-2 block">
               <Label htmlFor="user_name">User Name</Label>
             </div>
-            <TextInput id="user_name" name="user_name" type="text" required 
+            <TextInput sizing="lg" id="user_name" name="user_name" type="text" required 
               value={values.user.user_name} onChange={handleChange}
               color={errors ? "failure" : "gray"}
             />
@@ -48,7 +48,7 @@ export default function New() {
             <div className="mb-2 block">
               <Label htmlFor="password">Password</Label>
             </div>
-            <TextInput id="password" name="password" type="password" required
+            <TextInput sizing="lg" id="password" name="password" type="password" required
               value={values.user.password} onChange={handleChange}
               color={errors ? "failure" : "gray"}
             />

@@ -22,7 +22,7 @@ const ChatRooms = () => {
   }
   return (
     <>
-      <TextInput className='mb-1' type="text" onChange={(e) => setSearched(e.target.value)}/>
+      <TextInput sizing="lg" className='mb-1' type="text" onChange={(e) => setSearched(e.target.value)}/>
       <div className="mb-2 flex justify-center w-full gap-2" >
         <ToggleSwitch checked={createdBy} label="Created By me" onChange={setCreatedBy} />
         <ToggleSwitch checked={joined} label="Joined" onChange={setJoined} />
