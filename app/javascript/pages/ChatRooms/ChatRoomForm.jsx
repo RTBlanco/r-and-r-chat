@@ -30,6 +30,7 @@ export default function ChatRoomForm({className}) {
   const [message, setMessage ] = useState("")
 
   const handleKeyDown = (event) => {
+    console.log(event)
     if (event.key === 'Enter') {
       const messageData = {
         content: message,
@@ -43,22 +44,35 @@ export default function ChatRoomForm({className}) {
     }
   };
 
+  const handleOnSubmit = (e) => {
+    e.preventDefault()
+
+    if (isMobile) {
+      console.log(e)
+      const messageData = {
+        content: message,
+        user_id: user.id,
+      }   
+      router.post(`/chat_rooms/${chat_room.id}/messages`, messageData, {except: ['chat_room', 'messages']})
+    }
+  }
+
   const handleChange = (e) => {
     const value = e.target.value
     setMessage(value)
   }
 
   return (
-    <div className={className}>
+    <form className={className} onSubmit={handleOnSubmit}>
       <TextInput 
         id="message" 
         type="text"
         placeholder={`message in ${chat_room.name}`} 
-        onKeyDown={handleKeyDown}
+        // onKeyDown={handleKeyDown}
         onChange={handleChange}
         required
         sizing="lg"
       />
-    </div>
+    </form>
   )
 }
