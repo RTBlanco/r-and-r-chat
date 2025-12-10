@@ -38,15 +38,12 @@ export default function ChatRoomForm({className}) {
       }   
       router.post(`/chat_rooms/${chat_room.id}/messages`, messageData, {except: ['chat_room', 'messages']})
       event.target.value = ''
-      if (isMobile) {
-        event.target.blur();
-      }
     }
   };
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
-
+    
     if (isMobile) {
       console.log(e)
       const messageData = {
@@ -68,7 +65,7 @@ export default function ChatRoomForm({className}) {
         id="message" 
         type="text"
         placeholder={`message in ${chat_room.name}`} 
-        // onKeyDown={handleKeyDown}
+        onKeyDown={handleKeyDown}
         onChange={handleChange}
         required
         sizing="lg"
