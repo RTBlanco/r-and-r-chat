@@ -59,17 +59,35 @@ export default function ChatRoomForm({className}) {
     setMessage(value)
   }
 
+  // return (
+  //   <form className={className} onSubmit={handleOnSubmit}>
+  //     <TextInput 
+  //       id="message" 
+  //       type="text"
+  //       placeholder={`message in ${chat_room.name}`} 
+  //       // onKeyDown={handleKeyDown}
+  //       // onChange={handleChange}
+  //       required
+  //       sizing="lg"
+  //     />
+  //   </form>
+  // )
+
   return (
-    <form className={className} onSubmit={handleOnSubmit}>
+    <Form className={className} 
+      action={`/chat_rooms/${chat_room.id}/messages`} 
+      method="POST"
+      transform={(data) => ({...data, user_id: user.id})}
+      resetOnSuccess
+      except={['chat_room', 'messages']}
+      >
       <TextInput 
-        id="message" 
+        id="content"
+        name="content" 
         type="text"
         placeholder={`message in ${chat_room.name}`} 
-        onKeyDown={handleKeyDown}
-        onChange={handleChange}
         required
-        sizing="lg"
       />
-    </form>
+    </Form>
   )
 }
