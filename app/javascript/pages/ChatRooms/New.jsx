@@ -25,7 +25,7 @@ export default function New() {
                 Create Chat Room !
               </h5>
             </div>
-            <TextInput id="name" type="text" placeholder="name" onChange={handleOnChange}required />
+            <TextInput sizing="lg" id="name" type="text" placeholder="name" onChange={handleOnChange}required />
           </div>
 
           <Button type="submit">Submit</Button>
