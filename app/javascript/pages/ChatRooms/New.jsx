@@ -1,4 +1,4 @@
-import { Button, Card, Label, TextInput } from "flowbite-react";
+import { Button, Card, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { router } from "@inertiajs/react";
 
