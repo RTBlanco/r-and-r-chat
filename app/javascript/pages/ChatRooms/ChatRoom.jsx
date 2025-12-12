@@ -16,7 +16,6 @@ export default function ChatRoom() {
   const [stateMessages, setStateMessages] = useState(messages)
   
   useEffect(() => {
-    // setStateMessages(messages)
     App.cable.subscriptions.create({ channel: "ChatRoomChannel", chat_room_id: chat_room.id }, {
       connected() {
         console.log("Connected to the channel:", this);
@@ -27,19 +26,6 @@ export default function ChatRoom() {
       received(data) {
         console.log("Received some data:", data);
         setStateMessages(m => [...m, data])
-        // console.log(messages) 
-        // const new_messages = stateMessages.map(message => {
-        //   // console.log(message.id)
-        //   // console.log(data.id)
-        //   if (message.id === data.id) {
-        //     return data
-        //   } else {
-        //     message
-        //   }
-        // })
-        // setStateMessages(new_messages)
-        // // console.log(statetMessages)
-        // console.log(stateMessages)
       }
     });
   },[])
@@ -48,15 +34,14 @@ export default function ChatRoom() {
   return (
     <>
       <h1 className="flex justify-center text-sky-50">{chat_room.name}</h1>
-      <div className="rounded-lg flex flex-col justify-between h-full">
+      <div className="rounded-lg pb-5 px-6 h-full overflow-auto flex flex-col-reverse">
         <ChatRoomMessages>
           {stateMessages.map(message => (
             <Message key={message.id} message={message} />
           ))}
         </ChatRoomMessages>
       </div>
-      {/* <ChatRoomForm className='fixed bottom-0 left-0 w-full'/> */}
-      <ChatRoomForm className='absolute w-full'/>
+      <ChatRoomForm />
     </>
   );
 } 
