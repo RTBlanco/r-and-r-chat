@@ -79,14 +79,17 @@ export default function ChatRoomForm({className}) {
       method="POST"
       transform={(data) => ({...data, user_id: user.id})}
       resetOnSuccess
-      except={['chat_room', 'messages']}
+      options={{
+        preserveScroll: true,
+        except: ['chat_room', 'messages']
+      }}
       >
       <TextInput 
         id="content"
         name="content" 
         type="text"
         placeholder={`message in ${chat_room.name}`} 
-        required
+        sizing="lg"
       />
     </Form>
   )
