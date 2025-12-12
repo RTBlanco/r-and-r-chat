@@ -41,7 +41,7 @@ export default function Layout({children}) {
 
   function addOverFlow() {
     const overflow = url.match(/^\/chat_rooms\/(\d+)$/) && "overflow-hidden"
-    return `h-full px-6 pt-6 ${overflow}`
+    return `h-full flex flex-col pt-6 pb-6 ${overflow}`
   }
   return (
     <div className="h-dvh flex flex-col">
