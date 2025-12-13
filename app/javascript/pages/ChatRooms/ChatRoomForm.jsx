@@ -2,6 +2,7 @@ import { TextInput } from "flowbite-react"
 import { usePage } from "@inertiajs/react";
 import { Form } from '@inertiajs/react'
 import { useMediaQuery } from 'react-responsive';
+import { BiSolidSend } from "react-icons/bi";
 
 export default function ChatRoomForm({className}) {
   const isMobile = useMediaQuery({query: '(max-width: 600px'})
@@ -24,6 +25,7 @@ export default function ChatRoomForm({className}) {
         type="text"
         placeholder={`message in ${chat_room.name}`} 
         sizing="lg"
+        rightIcon={BiSolidSend}
       />
     </Form>
   )
