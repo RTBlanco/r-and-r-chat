@@ -1,4 +1,4 @@
-import { TextInput } from "flowbite-react"
+import { Button, TextInput } from "flowbite-react"
 import { usePage } from "@inertiajs/react";
 import { Form } from '@inertiajs/react'
 import { useMediaQuery } from 'react-responsive';
@@ -9,7 +9,7 @@ export default function ChatRoomForm({className}) {
   const {user, chat_room}  = usePage().props;
 
   return (
-    <Form className={className} 
+    <Form className={`${className} `} 
       action={`/chat_rooms/${chat_room.id}/messages`} 
       method="POST"
       transform={(data) => ({...data, user_id: user.id})}
@@ -25,7 +25,9 @@ export default function ChatRoomForm({className}) {
         type="text"
         placeholder={`message in ${chat_room.name}`} 
         sizing="lg"
-        rightIcon={BiSolidSend}
+        // rightIcon={() => 
+          // <BiSolidSend className="cursor-pointer" onClick={() => console.log("Hello world")} />
+        // }
       />
     </Form>
   )
